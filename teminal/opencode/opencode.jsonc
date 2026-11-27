@@ -1,0 +1,62 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "ollama/coder",
+  "agents": {
+    "title": {
+      "model": "ollama/fast"
+    },
+    "summary": {
+      "model": "ollama/fast"
+    }
+  },
+  "providers": {
+    "ollama": {
+      "name": "Ollama (Mac Mini)",
+      "package": "@ai-sdk/openai-compatible",
+      "settings": {
+        "baseURL": "http://FossMacMini2025.local:11434/v1"
+      },
+      "models": {
+        "coder": {
+          "modelID": "qwen3.6:27b-coding-mxfp8",
+          "name": "Qwen 3.6 Coder (27B)",
+          "capabilities": {
+            "tools": true
+          }
+        },
+        "fast": {
+          "modelID": "qwen3.8:27b-mlx",
+          "name": "Qwen 3.8 (27B)",
+          "capabilities": {
+            "tools": true
+          }
+        },
+        "reasoning": {
+          "modelID": "qwen3.8:27b-mlx",
+          "name": "Qwen 3.8 Reasoning (27B)",
+          "capabilities": {
+            "tools": true,
+            "reasoning": {
+              "supported": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "mcp": {
+    "rea": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "rea-agents@6.5.0",
+        "mcp"
+      ],
+      "enabled": true,
+      "environment": {
+        "HOPPER_LAUNCHER_PATH": "/Users/foss/Applications/Hopper Disassembler.app/Contents/MacOS/hopper"
+      }
+    }
+  }
+}

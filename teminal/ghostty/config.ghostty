@@ -1,0 +1,45 @@
+# --- Theme: ghostty +list-themes ---
+theme = "Github Dark Default"
+# "Sunset Drive", "Oxblood", "Northstar", "Clu", "Banana Blueberry"
+
+# --- Font style ---
+# font-family = "Anka/Coder" # Using the installed Anka/Coder font
+font-family = "JetBrainsMono Nerd Font"
+font-size = 14
+
+# --- Window style ---
+window-decoration = true
+background-opacity = 0.95
+background-blur = true
+background-blur-radius = 20
+window-padding-x = 12
+window-padding-y = 12
+
+# --- macOS Integration ---
+# macos-titlebar-style = hidden
+# window-save-state = "always" # Ensure sessions persist across Ghostty restarts
+
+# --- Basic Navigation ---
+keybind = super+t=new_tab
+# keybind = super+w=close_surface
+keybind = super+shift+left=previous_tab
+keybind = super+shift+right=next_tab
+
+# --- Styles ---
+cursor-style = block
+cursor-style-blink = true
+# Ghostty even supports particle effects on some platforms!
+# shell-integration-features = cursor-particle-effects
+
+# --- Mouse & Clipboard ---
+copy-on-select = true
+mouse-hide-while-typing = true
+
+# Ensures your SSH sessions carry your terminfo
+shell-integration = zsh
+
+# --- Cmd+Left | Cmd+right | Option+Left | Option+Right
+keybind = super+left=csi:1;9D
+keybind = super+right=csi:1;9C
+keybind = alt+left=csi:1;3D
+keybind = alt+right=csi:1;3C

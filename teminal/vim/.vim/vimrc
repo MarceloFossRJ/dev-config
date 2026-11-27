@@ -1,0 +1,110 @@
+" --- General & macOS Integration ---
+set nocompatible               " Disable legacy Vi compatibility
+filetype plugin indent on      " Enable filetype detection, plugins, and indentation
+syntax on                      " Enable syntax highlighting or 'syntax enable'
+set clipboard=unnamed          " Sync Vim yank/paste with macOS clipboard (Cmd+C / Cmd+V)
+set backspace=indent,eol,start " Allow backspacing over indents, line breaks, and start of insert
+set mouse=a                    " Enable mouse scrolling and cursor placement
+set directory-=.               " don't store swapfiles in the current directory
+
+" --- UI & Line Numbers ---
+set number                     " Show absolute line number on the current line
+set relativenumber             " Show relative line numbers on other lines for quick jumps
+set cursorline                 " Subtle highlight on the active line
+set showmatch                  " Highlight matching brackets/parentheses
+set laststatus=2               " Always display the status bar
+set wildmenu                   " Visual autocomplete menu for command-line mode
+
+" --- Indentation & Tabs ---
+set expandtab                  " Insert spaces instead of tab characters
+set tabstop=4                  " Display tabs as 4 spaces
+set shiftwidth=4               " Indent by 4 spaces when auto-indenting
+set autoindent                 " Maintain indentation from the previous line
+
+" --- Search ---
+set incsearch                  " Jump to matches as you type
+set hlsearch                   " Highlight all search results
+set ignorecase                 " Case-insensitive search...
+set smartcase                  " ...unless you type an uppercase letter
+
+" --- Nerd fonts setup ---
+set encoding=utf-8
+set fileencoding=utf-8
+let g:airline_powerline_fonts = 1
+
+set autoread                   " reload files when changed on disk, i.e. via `git checkout`
+set ruler                      " show where you are
+set scrolloff=3                " show context above/below cursorline
+
+" --- Visual ---
+set background=dark
+"let g:gruvbox_contrast_dark="hard"
+"colorscheme gruvbox
+colorscheme PaperColor
+
+let g:airline_solarized_bg='dark'
+
+let g:indent_guides_enable_on_vim_startup=1
+
+" --- Key mappings ---
+let mapleader = ','
+nnoremap <leader>t :TagbarToggle<CR>
+nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>f :NERDTreeFind<CR>
+nnoremap <leader>i :IndentGuidesToggle<CR>
+
+"--- LSP settings ---
+let lspOptions = #{
+    \ aleSupport: v:true,
+    \ autoHighlight: v:true,
+    \ completionTextEdit: v:true,
+    \ noNewlineInCompletion: v:true,
+    \ outlineOnRight: v:true,
+    \ outlineWinSize: 70,
+    \ showDiagWithSign: v:false,
+    \ useQuickfixForLocations: v:true,
+    \ }
+autocmd VimEnter * call LspOptionsSet(lspOptions)
+
+let lspServers = [
+    \ #{ name: 'gopls', filetype: ['go', 'gomod'],  path: 'gopls', args: ['serve'] },
+    \ #{ name: 'pylsp', filetype: ['py', 'python'], path: 'pylsp', args: []        },
+    \ #{ name: 'tsserver', filetype: ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'], path: 'typescript-language-server', args: ['--stdio'] },
+\ ]
+autocmd VimEnter * call LspAddServer(lspServers)
+
+"Enable auto selection of the fist autocomplete item"
+augroup LspSetup
+    au!
+    au User LspAttached set completeopt-=noselect
+augroup END
+"Disable newline on selecting completion option"
+inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
+
+"Mappings for most-used functions"
+nnoremap <leader>i :LspHover<CR>
+nnoremap <leader>d :LspGotoDefinition<CR>
+nnoremap <leader>p :LspPeekDefinition<CR>
+nnoremap <leader>R :LspRename<CR>
+nnoremap <leader>r :LspPeekReferences<CR>
+nnoremap <leader>o :LspDocumentSymbol<CR>
+
+"--- CMD+arrow & OPTION+arrow ---
+set ttimeoutlen=10
+
+" Cmd+Left -> Start of line
+nnoremap <Esc>[1;9D 0
+inoremap <Esc>[1;9D <C-o>0
+
+" Cmd+Right -> End of line
+nnoremap <Esc>[1;9C $
+inoremap <Esc>[1;9C <C-o>$
+
+" Option+Left -> Previous word
+nnoremap <Esc>[1;3D b
+inoremap <Esc>[1;3D <C-o>b
+
+" Option+Right -> Next word
+nnoremap <Esc>[1;3C w
+inoremap <Esc>[1;3C <C-o>w
+

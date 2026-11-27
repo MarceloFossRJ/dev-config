@@ -1,0 +1,210 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Don't print a new line at the start of the prompt
+# add_newline = false
+
+[username]
+style_user = '#a6aaf1 bold'
+style_root = 'white bold'
+format = '[$user]($style)'
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+format = '[@](white bold)[$hostname](#50fa7b bold)'
+disabled = false
+
+[directory]
+style = '#00a5ff bold'
+truncation_length = 0
+truncate_to_repo = false
+
+[git_branch]
+symbol = " "
+format = "on [$symbol$branch]($style) "
+style = "bold red"
+
+[custom.git_server]
+description = "Display symbol for remote Git server"
+command = """
+GIT_REMOTE=$(command git ls-remote --get-url 2> /dev/null)
+if [[ "$GIT_REMOTE" =~ "github" ]]; then
+    echo " [github] "
+elif [[ "$GIT_REMOTE" =~ "gitlab" ]]; then
+    echo " [gitlab]"
+elif [[ "$GIT_REMOTE" =~ "bitbucket" ]]; then
+    echo " [bitbucket]"
+else
+    echo " [git]"
+fi
+"""
+when = 'git rev-parse --is-inside-work-tree'
+
+# Show command execution time for long-running commands
+[cmd_duration]
+min_time = 2_000             # Show only if command took > 2 seconds
+format = "took [$duration]($style) "
+
+
+[bun]
+format = "[$symbol]($style)"
+
+[buf]
+format = "with [$symbol]($style)"
+
+[c]
+format = "[$symbol($name)]($style)"
+
+[cmake]
+format = "[$symbol]($style)"
+
+[cobol]
+format = "[$symbol]($style)"
+
+[cpp]
+format = "[$symbol($name)]($style)"
+
+[crystal]
+format = "[$symbol]($style)"
+
+[daml]
+format = "[$symbol]($style)"
+
+[dart]
+format = "[$symbol]($style)"
+
+[deno]
+format = "[$symbol]($style)"
+
+[dotnet]
+format = "[$symbol(🎯 $tfm )]($style)"
+
+[elixir]
+format = '[$symbol]($style)'
+
+[elm]
+format = '[$symbol]($style)'
+
+[erlang]
+format = '[$symbol]($style)'
+
+[fennel]
+format = '[$symbol]($style)'
+
+[fortran]
+format = '[$symbol]($style)'
+
+[gleam]
+format = '[$symbol]($style)'
+
+[golang]
+format = '[$symbol]($style)'
+
+[gradle]
+format = '[$symbol]($style)'
+
+[haskell]
+format = '[$symbol]($style)'
+
+[haxe]
+format = '[$symbol]($style)'
+
+[helm]
+format = '[$symbol]($style)'
+
+[java]
+format = '[$symbol]($style)'
+
+[julia]
+format = '[$symbol]($style)'
+
+[kotlin]
+format = '[$symbol]($style)'
+
+[lua]
+format = '[$symbol]($style)'
+
+[maven]
+format = '[$symbol]($style)'
+
+[meson]
+format = '[$symbol]($style)'
+
+[mojo]
+format = 'with [$symbol]($style)'
+
+[nim]
+format = '[$symbol]($style)'
+
+[nodejs]
+format = '[$symbol]($style)'
+
+[ocaml]
+format = '[$symbol(\($switch_indicator$switch_name\) )]($style)'
+
+[odin]
+format = '[$symbol]($style)'
+
+[opa]
+format = '[$symbol]($style)'
+
+[perl]
+format = '[$symbol]($style)'
+
+[php]
+format = '[$symbol]($style)'
+
+[pixi]
+format = '[$symbol($environment )]($style)'
+
+[pulumi]
+format = '[$symbol$stack]($style)'
+
+[purescript]
+format = '[$symbol]($style)'
+
+[python]
+format = '[$symbol]($style)'
+
+[quarto]
+format = '[$symbol]($style)'
+
+[raku]
+format = '[$symbol]($style)'
+
+[red]
+format = '[$symbol]($style)'
+
+[rlang]
+format = '[$symbol]($style)'
+
+[ruby]
+format = '[$symbol]($style)'
+
+[rust]
+format = '[$symbol]($style)'
+
+[scala]
+format = '[$symbol]($style)'
+
+[solidity]
+format = '[$symbol]($style)'
+
+[swift]
+format = '[$symbol]($style)'
+
+[typst]
+format = '[$symbol]($style)'
+
+[vagrant]
+format = '[$symbol]($style)'
+
+[vlang]
+format = '[$symbol]($style)'
+
+[xmake]
+format = "[$symbol]($style)"
+
+[zig]
+format = '[$symbol]($style)'
